@@ -1,0 +1,33 @@
+================== INSTALL ==================
+- scoop (for window)
+- migrate (https://github.com/golang-migrate/migrate/tree/master/cmd/migrate) - (https://packagecloud.io/golang-migrate/migrate)
+- make
+- mingw (add to path environment variable)
+- sqlc (go install github.com/kyleconroy/sqlc/cmd/sqlc@latest)
+
+================== Migration ==================
+
+- create > migrate create -ext sql -dir 'path include file' -seq init_schema
+
+================== GOLANG ==================
+- Connect Database: DATABASE/SQL, GORM, SQLX, SQLC (project use sqlc - "sqlc.dev")
+- Install Sqlc in WSL
+    *First step, run in wsl:
+        sudo apt-get update 
+        sudo apt-get install -yqq daemonize dbus-user-session fontconfig
+        sudo daemonize /usr/bin/unshare --fork --pid --mount-proc /lib/systemd/systemd --system-unit=basic.target
+        exec sudo nsenter -t $(pidof systemd) -a su - $LOGNAME
+
+    *Second step in wsl:
+        sudo systemctl unmask snapd.service
+        sudo systemctl enable snapd.service
+        sudo systemctl start snapd.service
+
+    *Run wsl --shutdown
+
+    *Third step, instal sqlc in wsl:
+        sudo snap install sqlc
+
+
+    *Finally check in terminal wsl:
+        snap help refresh
